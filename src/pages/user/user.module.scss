@@ -1,0 +1,22 @@
+@import '/src/styles/vars';
+
+.c_form {
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0 !important;
+  align-items: center;
+
+  div {
+    display: grid;
+    gap: $gap;
+  }
+
+  input:disabled {
+    color: $white;
+  }
+
+  @include form;
+
+  button {
+    grid-column: span 2;
+  }
+}

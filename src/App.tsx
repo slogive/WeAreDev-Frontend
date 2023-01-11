@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styles from './app.module.scss';
-import { Navbar, Footer } from './components';
-import { Home, Login, Signup, User, Users } from './pages';
+import { Footer, Navbar } from './components';
+import { Home, Login, Signup, User, Users, Account } from './pages';
 
 export default function App(): JSX.Element {
   return (
@@ -16,6 +16,7 @@ export default function App(): JSX.Element {
             <Route path='/signup' element={<Signup />} />
             <Route path='/users' element={<Users />} />
             <Route path='/user' element={<User />} />
+            <Route path='/account' element={<Account />} />
 
             <Route path='*' element={<div>Not found</div>} />
 

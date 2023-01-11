@@ -1,9 +1,20 @@
 import axios from 'axios';
-import { useState } from 'react';
-import { redirect } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styles from './signup.module.scss';
+import { userUpdate } from '../../features/user/logged';
 
 export default function Signup(): JSX.Element {
+  const navigate = useNavigate();
+
+  const state: any = useSelector((state: any) => state.loggedUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    state.logged && navigate('/users');
+  }, []);
+
   const [userData, setUserData] = useState<{
     name: string;
     surname: string;
@@ -34,7 +45,18 @@ export default function Signup(): JSX.Element {
         document: userData.document,
       })
       .then((r) => {
-        return redirect('/users');
+        dispatch(
+          userUpdate({
+            id: r.data.body.id,
+            name: r.data.body.name,
+            surname: r.data.body.surname,
+            email: r.data.body.email,
+            token: r.data.body.token,
+            logged: true,
+          })
+        );
+
+        return navigate('/users');
       })
       .catch((r) => {
         alert(r.response.data.message);
@@ -123,7 +145,9 @@ export default function Signup(): JSX.Element {
           />
         </div>
 
-        <button type='submit'>Signup</button>
+        <button type='submit' onClick={() => Request()}>
+          Signup
+        </button>
       </form>
     </div>
   );

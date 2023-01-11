@@ -8,10 +8,15 @@ import './index.scss';
 const container = document.getElementById('root')!;
 const root = ReactDOM.createRoot(container);
 
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
-);
+const renderApp = () => {
+  root.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
+  );
+};
+
+renderApp();
+store.subscribe(() => renderApp);

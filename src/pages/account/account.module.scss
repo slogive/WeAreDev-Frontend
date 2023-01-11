@@ -1,0 +1,26 @@
+@import '/src/styles/vars';
+
+.c_account {
+  display: grid;
+  gap: $gap;
+
+  .data {
+    padding: $pad;
+    background: $blue;
+    display: grid;
+    gap: $gap;
+    border-radius: $radius;
+
+    label {
+      color: $white;
+    }
+
+    input {
+      padding: $pad;
+      border-radius: $radius;
+      border: none;
+      outline: none;
+      border-radius: $radius;
+    }
+  }
+}

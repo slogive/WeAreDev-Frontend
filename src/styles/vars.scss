@@ -18,6 +18,8 @@ $green: #add211;
   border-radius: $radius;
   text-decoration: none;
   text-align: center;
+  outline: none;
+  border: none;
 
   &:hover {
     text-decoration: underline;

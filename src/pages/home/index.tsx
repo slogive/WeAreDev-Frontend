@@ -18,6 +18,29 @@ export default function Home(): JSX.Element {
         <Link to={'/login'}>Login</Link>
         <Link to={'/signup'}>Sign up</Link>
       </div>
+
+      {/* <button aria-label='Destroy user' onClick={() => dispatch(userDestroy())}>
+        Destroy user
+      </button> */}
+
+      {/* <span>{state}</span> */}
+
+      {/* <button
+        aria-label='Update user'
+        onClick={() =>
+          dispatch(
+            userUpdate({
+              id: 1,
+              name: 'Cesar',
+              surname: 'Fonseca',
+              email: 'slogive@gmail.com',
+              logged: true,
+            })
+          )
+        }
+      >
+        Update user
+      </button> */}
     </div>
   );
 }

@@ -1,13 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const loggedSlice = createSlice({
-  name: 'logged',
+const updateSlice = createSlice({
+  name: 'update',
   initialState: {
     id: NaN,
     name: '',
     surname: '',
     email: '',
-    logged: false,
   },
   reducers: {
     userUpdate: (state, action) => {
@@ -16,7 +15,6 @@ const loggedSlice = createSlice({
         name: action.payload.name,
         surname: action.payload.surname,
         email: action.payload.email,
-        logged: true,
       });
     },
     userDestroy: (state) => {
@@ -25,11 +23,10 @@ const loggedSlice = createSlice({
         name: '',
         surname: '',
         email: '',
-        logged: false,
       });
     },
   },
 });
 
-export const { userUpdate, userDestroy } = loggedSlice.actions;
-export default loggedSlice.reducer;
+export const { userUpdate, userDestroy } = updateSlice.actions;
+export default updateSlice.reducer;

@@ -1,10 +1,16 @@
 import axios from 'axios';
-import { useState } from 'react';
-import { redirect } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styles from './user.module.scss';
 
 export default function User(): JSX.Element {
+  const navigate = useNavigate();
+
+  const state: any = useSelector((state: any) => state.updateUser);
+
   const [userData, setUserData] = useState<{
+    id: number;
     name: string;
     surname: string;
     email: string;
@@ -13,6 +19,7 @@ export default function User(): JSX.Element {
     password: string;
     rePassword: string;
   }>({
+    id: NaN,
     name: '',
     surname: '',
     email: '',
@@ -22,9 +29,25 @@ export default function User(): JSX.Element {
     rePassword: '',
   });
 
+  async function _Request() {
+    await axios
+      .post(`${process.env.REACT_APP_API_URI}/getUser`, {
+        id: state.id,
+      })
+      .then((r) => setUserData(r.data))
+      .catch((r) => {
+        alert(r.response.data.message);
+      });
+  }
+
+  useEffect(() => {
+    _Request();
+  }, []);
+
   function Request() {
     axios
-      .post(`${process.env.REACT_APP_API_URI}/user`, {
+      .put(`${process.env.REACT_APP_API_URI}/user`, {
+        id: userData.id,
         name: userData.name,
         surname: userData.surname,
         email: userData.email,
@@ -34,7 +57,7 @@ export default function User(): JSX.Element {
         document: userData.document,
       })
       .then((r) => {
-        return redirect('/users');
+        return navigate('/users');
       })
       .catch((r) => {
         alert(r.response.data.message);
@@ -76,7 +99,7 @@ export default function User(): JSX.Element {
             autoComplete='documentType'
             id='documentType'
             name='documentType'
-            value={userData.documentType}
+            value={'CC'}
             onChange={() => {}}
             disabled={true}
           />
@@ -123,7 +146,7 @@ export default function User(): JSX.Element {
           />
         </div>
 
-        <button type='submit'>Signup</button>
+        <button type='submit'>Update</button>
       </form>
     </div>
   );

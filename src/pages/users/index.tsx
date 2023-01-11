@@ -1,8 +1,20 @@
 import axios from 'axios';
 import { Fragment, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { userUpdate } from '../../features/user/update';
 import styles from './users.module.scss';
 
 export default function Users(): JSX.Element {
+  const navigate = useNavigate();
+
+  const state: any = useSelector((state: any) => state.loggedUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    !state.logged && navigate('/login');
+  }, []);
+
   const [dataUsers, setDataUsers] = useState<
     Array<{
       createdAt: Date;
@@ -19,10 +31,12 @@ export default function Users(): JSX.Element {
     }>
   >();
 
+  async function Request() {
+    await axios.post(`${process.env.REACT_APP_API_URI}/getUsers`, {}).then((r) => setDataUsers(r.data));
+  }
+
   useEffect(() => {
-    (async () => {
-      await axios.post(`${process.env.REACT_APP_API_URI}/getUsers`, {}).then((r) => setDataUsers(r.data));
-    })();
+    Request();
   }, []);
 
   //
@@ -59,7 +73,10 @@ export default function Users(): JSX.Element {
                 </div>
 
                 <div>
-                  <span>{Itm.documentType}</span>
+                  <span>
+                    {/* {Itm.documentType} */}
+                    CC
+                  </span>
                 </div>
 
                 <div>
@@ -71,7 +88,43 @@ export default function Users(): JSX.Element {
                 </div>
 
                 <div className={styles.actions}>
-                  <button>Modify</button>
+                  <button
+                    onClick={() => {
+                      dispatch(
+                        userUpdate({
+                          id: Itm.id,
+                          name: Itm.name,
+                          surname: Itm.surname,
+                          score: Itm.score,
+                          status: Itm.status,
+                          document: Itm.document,
+                          documentType: Itm.documentType,
+                          password: Itm.password,
+                          email: Itm.email,
+                        })
+                      );
+
+                      navigate('/user');
+                    }}
+                  >
+                    Modify
+                  </button>
+                  <button
+                    onClick={() => {
+                      axios
+                        .post(`${process.env.REACT_APP_API_URI}/deleteUser`, {
+                          id: Itm.id,
+                        })
+                        .then((r) => {
+                          Request();
+                        })
+                        .catch((r) => {
+                          alert(r.response.data.message);
+                        });
+                    }}
+                  >
+                    Delete
+                  </button>
                 </div>
               </Fragment>
             ))}
