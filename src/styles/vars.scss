@@ -1,0 +1,57 @@
+$pad: 16px;
+$padm: calc(#{$pad} / 2);
+$gap: $pad;
+$radius: 4px;
+
+/* Colors */
+$white: white;
+$black: black;
+$blue: #120740;
+$blueLight: #062861;
+$green: #add211;
+
+/* Buttons */
+@mixin button() {
+  background: $green;
+  color: $blue;
+  padding: $pad;
+  border-radius: $radius;
+  text-decoration: none;
+  text-align: center;
+
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+@mixin form() {
+  display: grid;
+  gap: $gap;
+  padding: $pad;
+  background: $blue;
+  border-radius: $radius;
+
+  @media screen and (min-width: 769px) {
+    margin: $pad 35% 0 35%;
+  }
+
+  label {
+    color: $white;
+    margin: 0;
+  }
+
+  input {
+    padding: $pad;
+    border-radius: $radius;
+    border: none;
+    outline: none;
+    border-radius: $radius;
+  }
+
+  button {
+    margin-top: $pad;
+
+    @include button;
+  }
+}

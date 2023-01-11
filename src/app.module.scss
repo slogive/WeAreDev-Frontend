@@ -1,0 +1,12 @@
+@import '/src/styles/vars';
+
+.f {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: min-content auto min-content;
+}
+
+.c_main {
+  display: grid;
+  padding: $pad;
+}

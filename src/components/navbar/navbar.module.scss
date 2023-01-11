@@ -1,0 +1,50 @@
+@import '/src/styles/vars';
+
+.navbar {
+  padding: $pad;
+  background: $blue;
+  gap: $gap;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  height: min-content;
+
+  .c_title {
+    white-space: nowrap;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    justify-self: left;
+
+    .title {
+      font-size: 2rem;
+      font-style: italic;
+      color: $white;
+      text-decoration: none;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.15rem;
+      }
+    }
+  }
+
+  .c_elements {
+    display: grid;
+    gap: $gap;
+    justify-self: left;
+    grid-auto-flow: column;
+    grid-auto-columns: min-content;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+
+    .active {
+      background: gray;
+      color: $white;
+    }
+
+    a {
+      @include button;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@import '/src/styles/vars';
+
+.c_login {
+  gap: $gap;
+
+  h1 {
+    text-align: center;
+  }
+
+  .c_form {
+    @include form;
+  }
+}

@@ -1,0 +1,20 @@
+@import '/src/styles/vars';
+
+.c_home {
+  display: grid;
+  row-gap: 2rem;
+  column-gap: $pad;
+  align-self: center;
+
+  .c_buttons {
+    display: grid;
+    gap: $pad;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 50%;
+
+    a {
+      display: grid;
+      @include button();
+    }
+  }
+}
