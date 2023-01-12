@@ -13,6 +13,7 @@ export default function Users(): JSX.Element {
 
   useEffect(() => {
     !state.logged && navigate('/login');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [dataUsers, setDataUsers] = useState<

@@ -1,5 +1,4 @@
 $pad: 16px;
-$padm: calc(#{$pad} / 2);
 $gap: $pad;
 $radius: 4px;
 
@@ -11,9 +10,9 @@ $blueLight: #062861;
 $green: #add211;
 
 /* Buttons */
-@mixin button() {
-  background: $green;
-  color: $blue;
+@mixin button($background: $green, $color: $blue) {
+  background: $background;
+  color: $color;
   padding: $pad;
   border-radius: $radius;
   text-decoration: none;
@@ -35,7 +34,8 @@ $green: #add211;
   border-radius: $radius;
 
   @media screen and (min-width: 769px) {
-    margin: $pad 35% 0 35%;
+    min-width: 50%;
+    justify-self: center;
   }
 
   label {

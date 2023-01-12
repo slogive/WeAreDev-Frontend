@@ -1,17 +1,17 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styles from './account.module.scss';
-import axios from 'axios';
 
 export default function Account() {
   const navigate = useNavigate();
 
   const state: any = useSelector((state: any) => state.loggedUser);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     !state.logged && navigate('/login');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [user, setUser] = useState<{

@@ -2,8 +2,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import styles from './signup.module.scss';
 import { userUpdate } from '../../features/user/logged';
+import styles from './signup.module.scss';
 
 export default function Signup(): JSX.Element {
   const navigate = useNavigate();
@@ -13,6 +13,7 @@ export default function Signup(): JSX.Element {
 
   useEffect(() => {
     state.logged && navigate('/users');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [userData, setUserData] = useState<{

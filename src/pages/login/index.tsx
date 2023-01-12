@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import styles from './login.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { userUpdate } from '../../features/user/logged';
 import { useNavigate } from 'react-router-dom';
+import { userUpdate } from '../../features/user/logged';
+import styles from './login.module.scss';
 
 export default function Login(): JSX.Element {
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ export default function Login(): JSX.Element {
 
   useEffect(() => {
     state.logged && navigate('/account');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function changeHandler({ Evt }: { Evt: any }) {
